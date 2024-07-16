@@ -1,0 +1,99 @@
+work_dir: ./checkpoint/ntu60_xsub/dino_transformer_view_third/pretext/
+
+train_feeder: feeder.ntu_feeder.Feeder_multi
+train_feeder_args:
+  data_path: ./data/NTU60_XView.npz
+  split: 'train'
+  p_interval: [1.0]
+  window_size: 120
+  shear_amplitude: -1
+  aug_method: ''
+  mmap: True
+  n_globals: 2
+  n_locals: 0
+
+# memory feeder for knn
+mem_train_feeder: feeder.ntu_feeder.Feeder_single
+mem_train_feeder_args:
+  data_path: ./data/NTU60_XView.npz
+  split: 'train'
+  p_interval: [0.95]
+  window_size: 120
+  shear_amplitude: -1
+  aug_method: ''
+  mmap: True
+mem_test_feeder: feeder.ntu_feeder.Feeder_single
+mem_test_feeder_args:
+  data_path: ./data/NTU60_XView.npz
+  split: 'test'
+  p_interval: [0.95]
+  window_size: 120
+  shear_amplitude: -1
+  aug_method: ''
+  mmap: True
+
+# model
+model: net.dino.SkeletonDINO
+model_args:
+  base_encoder: net.transformer.Transformer
+  weights: pretrained_weights/dinotuning_xview_second_noaug.pt
+  pretrain: True
+  dim_in: 3
+  dim_feat: 256
+  feature_dim: 128
+  num_class: 60
+  cls_token: False
+  depth: 8
+  num_heads: 8
+  mlp_ratio: 4
+  num_frames: 120
+  num_joints: 25
+  patch_size: 1
+  t_patch_size: 4
+  qkv_bias: True
+  qk_scale: None
+  drop_rate: 0.
+  attn_drop_rate: 0.
+  drop_path_rate: 0.
+  norm_skes_loss: True
+  motion_aware_tau: 0.0
+  mask_ratio: 0.0
+  dino_head: False
+
+# optim
+nesterov: False
+weight_decay: 1e-4
+base_lr: 0.001
+optimizer: AdamW
+koleo_weight: 0.1
+third_stage: True
+layer_decay: 0.45
+
+# training
+device: [0,1,2,3]
+batch_size: 32
+test_batch_size: 32
+num_epoch: 20
+start_epoch: 0
+stream: 'joint'
+loss: 'dino'
+momentum_teacher: 0.996
+warmup_teacher_temp: 0.01
+warmup_teacher_temp_epochs: 0
+teacher_temp: 0.04
+student_temp: 0.1
+centering_type: 'sinkhorn_knopp'
+clip_grad: 3
+draw_distribution: True
+draw_freq: 10
+selected_indices: [4, 16, 32, 128]
+
+# log
+save_interval: 1
+eval_interval: -1
+
+knn_interval: 1
+knn_k: [10, 20, 40]
+knn_classes: 60
+knn_t: 0.1
+KNN_show: [50, 100, 150, 200, 250, 300]

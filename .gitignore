@@ -1,0 +1,10 @@
+__pycache__
+*.npy
+*.pkl
+*.zip
+*.gif
+*.png
+*.npz
+checkpoint
+wandb
+data/raw_data

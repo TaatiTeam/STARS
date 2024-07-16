@@ -1,0 +1,8 @@
+PyYAML
+h5py
+tensorboardX
+slot_attention
+tqdm
+wandb
+matplotlib
+sklearn
