@@ -1,4 +1,8 @@
 # STARS ✨
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/stars-self-supervised-tuning-for-3d-action/self-supervised-skeleton-based-action)](https://paperswithcode.com/sota/self-supervised-skeleton-based-action?p=stars-self-supervised-tuning-for-3d-action)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/stars-self-supervised-tuning-for-3d-action/self-supervised-skeleton-based-action-1)](https://paperswithcode.com/sota/self-supervised-skeleton-based-action-1?p=stars-self-supervised-tuning-for-3d-action)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/stars-self-supervised-tuning-for-3d-action/few-shot-skeleton-based-action-recognition-on)](https://paperswithcode.com/sota/few-shot-skeleton-based-action-recognition-on?p=stars-self-supervised-tuning-for-3d-action)
+
 [[Project Page]](https://soroushmehraban.github.io/stars)
 
 
